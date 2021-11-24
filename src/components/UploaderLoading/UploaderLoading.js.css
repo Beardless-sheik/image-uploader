@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+.uploader {
+  height: 143.56585693359375px;
+  width: 400.3591613769531px;
+  border-radius: 12px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 30px;
+  border: 1px black solid;
+}
+
+.uploader-text {
+  width: 100px;
+  height: 27px;
+  margin: 32px 10px 5px 32px;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.035em;
+  /* Gray 2 */
+  color: #4F4F4F;
+}
+
+.upload-animation-blue-container {
+  width: 340.71px;
+  height: 6px;
+  margin: 31px 31px 0px 32px;
+  border-radius: 8px;
+  background: #F2F2F2; 
+}
+
+.upload-animation-blue-item {
+  width: 100.93px;
+  height: 6px;
+  background: #2F80ED; /* Blue 1 */
+  border-radius: 8px;
+
+  /* Annimation Properties */
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 70%;
+  }
+
+  to {
+    margin-left: 0%;
+  }
+}
+
+
+
