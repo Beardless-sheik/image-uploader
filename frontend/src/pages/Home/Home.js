@@ -1,6 +1,24 @@
 import { Component } from 'react';
 import './Home.css';
 
+async function postData(url='', data = {}) {
+	const requestOptions = {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  }
+	let response = await fetch(url, requestOptions);
+	if (response.status == 200) {
+    let json = await response.json(); // (3)
+		console.log(json);
+    return json;
+  }
+  throw new Error(response.status);
+}
+
 class Home extends Component {
 	constructor(props){
 		super(props);
@@ -9,7 +27,19 @@ class Home extends Component {
 
 	handleSubmit = (event) => {
 		console.log(3);
-		// event.preventDefault();
+		async function submitPost() {
+			try {
+				await postData('https://reqres.in/api/users', {"name": "Alick", "job": "tech-lead"});
+			}
+			catch(err) {
+				console.log("Ohhhhh no");
+				console.log(err);
+			}
+			finally {
+				console.log("Function to do clean up");
+			}
+		};
+		submitPost();
 	}
 
 	onChangeFileInput = (selectedFiles) => {
