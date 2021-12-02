@@ -2,7 +2,7 @@
 
 .uploader {
   height: 143.56585693359375px;
-  width: 400.3591613769531px;
+  /* width: 400.3591613769531px; */
   border-radius: 12px;
   background: #FFFFFF;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
@@ -11,7 +11,7 @@
 }
 
 .uploader-text {
-  width: 100px;
+  /* width: 100px; */
   height: 27px;
   margin: 32px 10px 5px 32px;
   font-family: Poppins;
@@ -25,7 +25,7 @@
 }
 
 .upload-animation-blue-container {
-  width: 340.71px;
+  /* width: 340.71px; */
   height: 6px;
   margin: 31px 31px 0px 32px;
   border-radius: 8px;
@@ -47,7 +47,7 @@
 
 @keyframes slidein {
   from {
-    margin-left: 70%;
+    margin-left: 65%;
   }
 
   to {
