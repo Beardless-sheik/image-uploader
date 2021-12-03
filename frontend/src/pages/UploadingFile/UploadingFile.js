@@ -11,9 +11,8 @@ async function postData(url='', data = {}) {
     body: JSON.stringify(data) // body data type must match "Content-Type" header
   }
 	let response = await fetch(url, requestOptions);
-	if (response.status == 200) {
+	if (response.status == 201) {
     let json = await response.json(); // (3)
-		console.log(json);
     return json;
   }
   throw new Error(response.status);
@@ -34,7 +33,8 @@ class UploadingForm extends Component {
 		this.handleUploadingChange();
 		async function submitPost() {
 			try {
-				await postData('https://reqres.in/api/users', {"name": "Alick", "job": "tech-lead"});
+				const response = await postData('https://reqres.in/api/users', {"name": "Alick", "job": "tech-lead"});
+				console.log(response);
 			}
 			catch(err) {
 				console.log("Ohhhhh no");

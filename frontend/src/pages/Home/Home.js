@@ -12,13 +12,13 @@ class Home extends Component {
 		};
 	}
 	
-	handleUploadingChange(){
-		if(this.state.isUploading){
-			this.setState({isUploading: false})
-		} else {
-			this.setState({isUploading: true})
-		}
-	}
+	// handleUploadingChange(){
+	// 	if(this.state.isUploading){
+	// 		this.setState({isUploading: false})
+	// 	} else {
+	// 		this.setState({isUploading: true})
+	// 	}
+	// }
 
 	render() {
 		const isUploading = this.state.isUploading ;
