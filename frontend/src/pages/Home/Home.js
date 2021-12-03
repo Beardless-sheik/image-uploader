@@ -6,20 +6,29 @@ import './Home.css';
 class Home extends Component {
 	constructor(props){
 		super(props);
+		this.handleUploadingChange = this.handleUploadingChange.bind(this);
 		this.state = {
 			isUploading: false
 		};
 	}
 	
+	handleUploadingChange(){
+		if(this.state.isUploading){
+			this.setState({isUploading: false})
+		} else {
+			this.setState({isUploading: true})
+		}
+	}
+
 	render() {
 		const isUploading = this.state.isUploading ;
 
 		const renderUploadPageState = () => {
 			if(isUploading) {
-				return <UploaderStatusLoading />
+				return <UploaderStatusLoading uploadingStatus={this.state.isUploading} />
 			}
 			else {
-				return <UploadingForm />
+				return <UploadingForm uploadingStatus={this.state.isUploading} handleUploadingChange={this.handleUploadingChange}/>
 			}
 		};
 

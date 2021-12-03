@@ -22,10 +22,16 @@ async function postData(url='', data = {}) {
 class UploadingForm extends Component {
 	constructor(props){
 		super(props);
+		this.handleUploadingChange = this.handleUploadingChange.bind(this);
+	}
+
+	handleUploadingChange = () => {
+		this.props.handleUploadingChange();
 	}
 
 	handleSubmit = (event) => {
 		console.log(3);
+		this.handleUploadingChange();
 		async function submitPost() {
 			try {
 				await postData('https://reqres.in/api/users', {"name": "Alick", "job": "tech-lead"});
@@ -43,6 +49,7 @@ class UploadingForm extends Component {
 
 	onChangeFileInput = (selectedFiles) => {
 		console.log(selectedFiles);
+
 		this.handleSubmit();
 	}
 
