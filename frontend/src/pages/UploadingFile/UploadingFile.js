@@ -22,19 +22,26 @@ class UploadingForm extends Component {
 	constructor(props){
 		super(props);
 		this.handleUploadingChange = this.handleUploadingChange.bind(this);
+		this.handleUploadSuccessfulChange = this.handleUploadSuccessfulChange.bind(this);
 	}
 
 	handleUploadingChange = () => {
 		this.props.handleUploadingChange();
 	}
 
+	handleUploadSuccessfulChange = () => {
+		console.log("trying succesful change")
+		this.props.handleUploadSuccessfulChange();
+	}
+
 	handleSubmit = (event) => {
-		console.log(3);
+		let response = null;
 		this.handleUploadingChange();
-		async function submitPost() {
+		const submitPost = async () => {
+			console.log(this);
 			try {
-				const response = await postData('https://reqres.in/api/users', {"name": "Alick", "job": "tech-lead"});
-				console.log(response);
+				response = await postData('https://reqres.in/api/users', {"name": "Alick", "job": "tech-lead"});
+				console.log(response);         
 			}
 			catch(err) {
 				console.log("Ohhhhh no");
@@ -42,6 +49,7 @@ class UploadingForm extends Component {
 			}
 			finally {
 				console.log("Function to do clean up");
+				this.handleUploadSuccessfulChange();
 			}
 		};
 		submitPost();

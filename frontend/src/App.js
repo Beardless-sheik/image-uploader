@@ -2,7 +2,8 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Routes,
-  Route 
+  Route,
+  Navigate,
 } from 'react-router-dom';
 import {Component} from 'react';
 import Home from './pages/Home/Home.js';
@@ -17,21 +18,22 @@ class App extends Component {
   }
 
   handleUploadSuccessfulChange = () => {
-    if(this.state.uploadSuccesful){
+    if(this.state.uploadSuccesful) {
 			this.setState({uploadSuccesful: false})
 		} else {
+      console.log("upload - true")
 			this.setState({uploadSuccesful: true})
 		}
   } 
   
   render() {
+    console.log("App is re-rendering");
     return (
-      <Router>
         <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<h1> About Test</h1>} />
+            <Route path="/" element={<Home handleUploadSuccessfulChange={this.handleUploadSuccessfulChange} uploadSuccesfulBool={this.state.uploadSuccesful} />} />
+            <Route path="about" element={<h1> About Test</h1>} />
+            <Route path="uploadsuccess" element={<SuccesfulUpload />}/>
         </Routes>
-      </Router>
     );
   }
 }
