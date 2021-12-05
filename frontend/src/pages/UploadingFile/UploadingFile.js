@@ -23,9 +23,13 @@ class UploadingForm extends Component {
 		super(props);
 		this.handleUploadingChange = this.handleUploadingChange.bind(this);
 		this.handleUploadSuccessfulChange = this.handleUploadSuccessfulChange.bind(this);
+
+		this.state = {
+			uploadedImage: ''
+		}
 	}
 
-	handleUploadingChange = () => {
+	handleUploadingChange = (e) => {
 		this.props.handleUploadingChange();
 	}
 
@@ -35,6 +39,9 @@ class UploadingForm extends Component {
 	}
 
 	handleSubmit = (event) => {
+		// event.preventDefault();
+		const formData = new FormData();
+		formData.append('uploadedImage', this.state.uploadedImage)
 		let response = null;
 		this.handleUploadingChange();
 		const submitPost = async () => {
@@ -56,8 +63,8 @@ class UploadingForm extends Component {
 	}
 
 	onChangeFileInput = (selectedFiles) => {
-		console.log(selectedFiles);
-
+		console.info("selected files:", selectedFiles);
+		this.setState({ uploadedImage: selectedFiles[0] })
 		this.handleSubmit();
 	}
 
