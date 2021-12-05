@@ -1,3 +1,5 @@
+import './UploaderLoading.css';
+
 function UploaderStatusLoading() {
   return (
     <div className="uploader-container">
