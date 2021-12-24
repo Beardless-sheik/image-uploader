@@ -1,12 +1,13 @@
 var express = require('express')
 var router = express.Router()
 
-// define the home page route
+// define the get images route
 router.get('/', function (req, res) {
   res.json('Birds home page')
 })
-// define the about route
-router.get('/about', function (req, res) {
+
+// define the post images route
+router.post('/about', function (req, res) {
   res.send('About birds')
 })
 
