@@ -11,4 +11,4 @@ class localDate {
 	}
 }
 
-module.exports = localDate;  
+module.exports = {localDate};
