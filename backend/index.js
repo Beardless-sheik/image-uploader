@@ -1,4 +1,4 @@
-const images = require('./routes/images') 
+const images = require('./routes/images.routes') 
 const express = require('express'),
       multer = require('multer'),
 	  mongoose = require('mongoose'),
@@ -9,6 +9,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 database.connectToDatabase();
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.get('/', (req, res) => res.send('Upload Images API is running !'))
 app.listen(3000, () => console.log('Server ready'))
 app.use('/api/images', images)
