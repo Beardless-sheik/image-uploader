@@ -30,8 +30,9 @@ class App extends Component {
     console.log("App is re-rendering");
     return (
         <Routes>
-            <Route path="/" element={<Home handleUploadSuccessfulChange={this.handleUploadSuccessfulChange} uploadSuccesfulBool={this.state.uploadSuccesful} />} />
-            <Route path="about" element={<h1> About Test</h1>} />
+            <Route path="/" element={
+              <Home handleUploadSuccessfulChange={this.handleUploadSuccessfulChange} uploadSuccesfulBool={this.state.uploadSuccesful} />
+            } />
             <Route path="uploadsuccess" element={<SuccesfulUpload />}/>
         </Routes>
     );
