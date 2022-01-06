@@ -13,7 +13,8 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      uploadSuccesful: false
+      uploadSuccesful: false,
+      imageURL: ''
     }
   }
 
@@ -24,16 +25,20 @@ class App extends Component {
       console.log("upload - true")
 			this.setState({uploadSuccesful: true})
 		}
-  } 
+  }
+  
+  handleImageUrlChange = (newURL) => {
+    this.setState({imageURL: newURL })
+  }
   
   render() {
     console.log("App is re-rendering");
     return (
         <Routes>
             <Route path="/" element={
-              <Home handleUploadSuccessfulChange={this.handleUploadSuccessfulChange} uploadSuccesfulBool={this.state.uploadSuccesful} />
+              <Home handleUploadSuccessfulChange={this.handleUploadSuccessfulChange} uploadSuccesfulBool={this.state.uploadSuccesful} handleImageUrlChange={this.handleImageUrlChange}/>
             } />
-            <Route path="uploadsuccess" element={<SuccesfulUpload />}/>
+            <Route path="uploadsuccess" element={<SuccesfulUpload imageURL={this.state.imageURL}/>}/>
         </Routes>
     );
   }

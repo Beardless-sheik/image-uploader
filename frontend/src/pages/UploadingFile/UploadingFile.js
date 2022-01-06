@@ -24,6 +24,7 @@ class UploadingForm extends Component {
 		super(props);
 		this.handleUploadingChange = this.handleUploadingChange.bind(this);
 		this.handleUploadSuccessfulChange = this.handleUploadSuccessfulChange.bind(this);
+    this.handleImageUrlChange = this.handleImageUrlChange.bind(this);
 
 		this.state = {
 			uploadedImage: ''
@@ -33,6 +34,10 @@ class UploadingForm extends Component {
 	handleUploadingChange = (e) => {
 		this.props.handleUploadingChange();
 	}
+
+  handleImageUrlChange = (newUrl) => {
+    this.props.handleImageUrlChange(newUrl);
+  }
 
 	handleUploadSuccessfulChange = () => {
 		console.log("trying succesful change")
@@ -47,7 +52,13 @@ class UploadingForm extends Component {
 		this.handleUploadingChange();
 		const submitPost = () => {
 				postData('https://api.cloudinary.com/v1_1/alick94/image/upload', formData)
-				.then(data => console.log(data))         
+				.then( data => {
+					this.handleImageUrlChange(data.url);
+          return data.url
+        })
+        .then( url =>
+          console.log(url)
+        )         
 				.catch(err => {
 					console.log("Ohhhhh no");
 					console.log(err);
