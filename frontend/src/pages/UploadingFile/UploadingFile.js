@@ -1,20 +1,21 @@
 import { Component } from "react";
 import './UploadingFile.css';
 
+let tempState = {}
 async function postData(url='', data = {}) {
 	const requestOptions = {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, *cors, same-origin
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data) // body data type must match "Content-Type" header
+    body: data // body data type must match "Content-Type" header
   }
+	console.log(requestOptions.body)
 	let response = await fetch(url, requestOptions);
-	if (response.status == 201) {
+	if (response.status == 200 || response.status == 201) {
     let json = await response.json(); // (3)
+		console.log(json);
     return json;
   }
+	console.log(response);
   throw new Error(response.status);
 }
 
@@ -23,6 +24,7 @@ class UploadingForm extends Component {
 		super(props);
 		this.handleUploadingChange = this.handleUploadingChange.bind(this);
 		this.handleUploadSuccessfulChange = this.handleUploadSuccessfulChange.bind(this);
+    this.handleImageUrlChange = this.handleImageUrlChange.bind(this);
 
 		this.state = {
 			uploadedImage: ''
@@ -33,6 +35,10 @@ class UploadingForm extends Component {
 		this.props.handleUploadingChange();
 	}
 
+  handleImageUrlChange = (newUrl) => {
+    this.props.handleImageUrlChange(newUrl);
+  }
+
 	handleUploadSuccessfulChange = () => {
 		console.log("trying succesful change")
 		this.props.handleUploadSuccessfulChange();
@@ -41,29 +47,32 @@ class UploadingForm extends Component {
 	handleSubmit = (event) => {
 		// event.preventDefault();
 		const formData = new FormData();
-		formData.append('uploadedImage', this.state.uploadedImage)
-		let response = null;
+		formData.append('file', tempState.uploadedImage);
+		formData.append('upload_preset','uploadunsigned');
 		this.handleUploadingChange();
-		const submitPost = async () => {
-			console.log(this);
-			try {
-				response = await postData('https://reqres.in/api/users', {"name": "Alick", "job": "tech-lead"});
-				console.log(response);         
-			}
-			catch(err) {
-				console.log("Ohhhhh no");
-				console.log(err);
-			}
-			finally {
-				console.log("Function to do clean up");
-				this.handleUploadSuccessfulChange();
-			}
+		const submitPost = () => {
+				postData('https://api.cloudinary.com/v1_1/alick94/image/upload', formData)
+				.then( data => {
+					this.handleImageUrlChange(data.url);
+          return data.url
+        })
+        .then( url =>
+          console.log(url)
+        )         
+				.catch(err => {
+					console.log("Ohhhhh no");
+					console.log(err);
+				})
+				.finally(() => {
+					console.log("Function to do clean up");
+					this.handleUploadSuccessfulChange();
+				});
 		};
 		submitPost();
 	}
 
 	onChangeFileInput = (selectedFiles) => {
-		console.info("selected files:", selectedFiles);
+		tempState = {uploadedImage: selectedFiles[0]}
 		this.setState({ uploadedImage: selectedFiles[0] })
 		this.handleSubmit();
 	}

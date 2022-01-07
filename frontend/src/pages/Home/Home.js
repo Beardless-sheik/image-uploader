@@ -25,7 +25,6 @@ class Home extends Component {
 		const isUploading = this.state.isUploading ;
 		console.log(this.props.uploadSuccesfulBool)
 		if (this.props.uploadSuccesfulBool === true) {
-			console.log(3);
     	return <Navigate to='/uploadsuccess'/>
   	}
 		const renderUploadPageState = () => {
@@ -33,7 +32,7 @@ class Home extends Component {
 				return <UploaderStatusLoading uploadingStatus={this.state.isUploading} />
 			}
 			else {
-				return <UploadingForm uploadingStatus={this.state.isUploading} handleUploadingChange={this.handleUploadingChange} handleUploadSuccessfulChange={this.props.handleUploadSuccessfulChange} uploadSuccesfulBool={this.props.uploadSuccesfulBool} />
+				return <UploadingForm uploadingStatus={this.state.isUploading} handleUploadingChange={this.handleUploadingChange} handleUploadSuccessfulChange={this.props.handleUploadSuccessfulChange} uploadSuccesfulBool={this.props.uploadSuccesfulBool} handleImageUrlChange={this.props.handleImageUrlChange} />
 			}
 		};
 
