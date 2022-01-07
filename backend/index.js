@@ -1,4 +1,5 @@
-const images = require('./routes/images.routes') 
+const images = require('./routes/images.routes');
+require('dotenv').config(); 
 const express = require('express'),
       multer = require('multer'),
 	  mongoose = require('mongoose'),
