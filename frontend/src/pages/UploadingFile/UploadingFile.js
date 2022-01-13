@@ -10,7 +10,7 @@ async function postData(url='', data = {}) {
   }
 	console.log(requestOptions.body)
 	let response = await fetch(url, requestOptions);
-	if (response.status == 200 || response.status == 201) {
+	if (response.status === 200 || response.status === 201) {
     let json = await response.json(); // (3)
 		console.log(json);
     return json;
