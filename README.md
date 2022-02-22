@@ -1,7 +1,7 @@
 # Image-uploader
 
 ## Description
-Image uploader that allows you to upload an image and have a link to use elsewhere. Images are stored using the Cloudinary Image storage servcice and URL saved into a MONGO DB Atlas database using [this backend](https://github.com/Beardless-sheik/image-uploader-backend) built with React and an Express Backend. State management is handled natively by react and routing is executed using [React Router v6](https://reactrouter.com/docs/en/v6)
+Image uploader that allows you to upload an image and have a link to use elsewhere. Images are stored using the Cloudinary Image storage servcice and URL saved into a MONGO DB Atlas database using [this backend](https://github.com/Beardless-sheik/image-uploader-backend) built with React and an Express Backend. State management is handled natively by react and routing is executed using [React Router v6](https://reactrouter.com/docs/en/v6). It is [LIVE HERE](https://boring-morse-fcd5f9.netlify.app/)
 
 ## Built With
 
